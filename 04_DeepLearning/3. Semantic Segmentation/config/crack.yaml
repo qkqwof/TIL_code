@@ -1,0 +1,35 @@
+DATA:
+  data_name: crack
+  train_root: ../data/crack/train
+  train_list: ../data/crack/train/train.txt
+  val_root: ../data/crack/val
+  val_list: ../data/crack/val/val.txt
+  test_root: ../data/crack/test
+  test_list: ../data/crack/test/test.txt
+  classes: 2
+
+TRAIN:
+  model: unet128
+  loss: dice # [bce,ce,dice]
+  aux_weight: 0.4
+  dropout: 0.1
+  input_size: [448,448]
+  scale_min: 0.8  # data augmentation param. (minimum random scale)
+  scale_max: 1.5  # data augmentation param. (maximum random scale)
+  rotate_min: -10 # data augmentation param. (minimum random rotate)
+  rotate_max: 10  # data augmentation param. (maximum random rotate)
+  brightness: 0.4 # data augmentation param. (brightness factor)
+  contrast: 0.4   # data augmentation param. (contrast factor)
+  saturation: 0.4 # data augmentation param. (saturation factor)
+  gpu: [0, 1, 2, 3]
+  workers: 16  # data loader workers
+  batch_size: 12  # batch size for training/validation
+  base_lr: 0.001
+  epochs: 350
+  start_epoch: 0
+  ckpt_root: models/ckpt/crack
+  weight: #models/ckpt/crack/crack_unet128_2.pth # path to resume weight
+
+TEST:
+  test_weight: models/ckpt/crack/crack_unet128_2.pth
+  save_folder: results/crack  # results save folder

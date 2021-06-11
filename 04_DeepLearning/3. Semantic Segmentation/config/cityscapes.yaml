@@ -1,0 +1,36 @@
+DATA:
+  data_name: cityscapes
+  train_root: ../data/cityscapes/train
+  train_list: ../data/cityscapes/train/train.txt
+  val_root: ../data/cityscapes/val
+  val_list: ../data/cityscapes/val/val.txt
+  test_root: ../data/cityscapes/test
+  test_list: ../data/cityscapes/test/test.txt
+  classes: 19
+
+TRAIN:
+  model: pspnet50
+  dropout: 0.1
+  loss: ce # [bce,ce,dice]
+  aux_weight: 0.4
+  train_input_size: [512,512]
+  scale_min: 0.5  # data augmentation param. (minimum random scale)
+  scale_max: 2.0  # data augmentation param. (maximum random scale)
+  rotate_min: -10 # data augmentation param. (minimum random rotate)
+  rotate_max: 10  # data augmentation param. (maximum random rotate)
+  ignore_label: 255
+  gpu: [0, 1, 2, 3]
+  workers: 16  # data loader workers
+  batch_size: 12  # batch size for training/validation
+  base_lr: 0.01
+  epochs: 350
+  start_epoch: 0
+  ckpt_root: models/ckpt/cityscapes
+  weight: #models/ckpt/cityscapes/unet_6.pth # path to resume weight
+
+TEST:
+  test_weight: models/ckpt/cityscapes/unet_4.pth
+  save_folder: results/cityscapes  # results save folder
+  test_input_size: [1024,2048]
+  color_path: ../data/cityscapes/colors.txt
+  name_path: ../data/cityscapes/names.txt

@@ -1,0 +1,34 @@
+DATA:
+  data_name: isic
+  train_root: /content/ISIC_Trainset
+  train_list: /content/ISIC_Trainset/train.txt
+  val_root: /content/ISIC_Trainset
+  val_list: /content/ISIC_Trainset/train.txt
+  test_root: /content/ISIC_Testset
+  test_list: /content/ISIC_Testset/test.txt
+  classes: 2
+
+TRAIN:
+  model: unet32
+  loss: ce # [bce,ce,dice]
+  dropout: 0.1
+  input_size: [320,320]
+  scale_min: 0.8  # data augmentation param. (minimum random scale)
+  scale_max: 1.5  # data augmentation param. (maximum random scale)
+  rotate_min: -10 # data augmentation param. (minimum random rotate)
+  rotate_max: 10  # data augmentation param. (maximum random rotate)
+  brightness: 0.4 # data augmentation param. (brightness factor)
+  contrast: 0.4   # data augmentation param. (contrast factor)
+  saturation: 0.4 # data augmentation param. (saturation factor)
+  gpu: [0, 1, 2, 3]
+  workers: 16  # data loader workers
+  batch_size: 12  # batch size for training/validation
+  base_lr: 0.01
+  epochs: 350
+  start_epoch: 0
+  ckpt_root: models/ckpt/isic
+  weight: #models/ckpt/isic/isic_unet_6.pth # path to resume weight
+
+TEST:
+  test_weight: models/ckpt/isic/isic_unet_11.pth
+  save_folder: results/isic  # results save folder
