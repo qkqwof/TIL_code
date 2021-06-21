@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+												 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- 
+	1. 먼저 3개의 주사위 사용자정의 빈 3개를 생성해야 한다. diceA, diceB, diceC
+	
+	
+	2. player01 빈 :: diceA 생성자 주입
+	   player02 빈 :: diceB 생성자 주입
+	   player03 빈 :: diceC Setter 주입
+	   player04 빈 :: diceA Setter 주입
+	
+	 -->
+	 <!-- Dice Bean 3개를 정의 :: 사용자정의 빈 | 주입 없음. 빈은 실체 클래스(컴포넌트) -->
+    <bean id = "diceA" class="spring.service.dice.impl.DiceAImpl"/>
+    <bean id = "diceB" class="spring.service.dice.impl.DiceBImpl"/>
+    <bean id = "diceC" class="spring.service.dice.impl.DiceCImpl"/>
+    
+    
+    <bean id = "player01" class="spring.service.dice.play.Player02">
+    	<constructor-arg ref="diceA"/>
+    </bean>
+    <bean id = "player02" class="spring.service.dice.play.Player02">
+    	<constructor-arg ref="diceB"/>
+    </bean>
+    <bean id = "player03" class="spring.service.dice.play.Player02">
+    	<property name="dice" ref="diceC"></property>
+    </bean>
+    <bean id = "player04" class="spring.service.dice.play.Player02">
+    	<property name="dice" ref="diceA"></property>
+    </bean>
+	
+</beans>

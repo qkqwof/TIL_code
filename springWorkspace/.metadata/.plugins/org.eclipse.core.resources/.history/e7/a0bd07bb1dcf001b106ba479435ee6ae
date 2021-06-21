@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+												 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- greet1이라는 이름으로 Greet 객체가 생성되도록 빈을 작성 -->
+	<bean id="hello" class = "spring.service.hello.Greet">
+	
+	</bean>
+	
+
+</beans>

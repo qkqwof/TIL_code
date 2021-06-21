@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.BeanFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.xml.XmlBeanFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.core.io.FileSystemResource"/>
+    <fullyQualifiedTypeName name="spring.service.hello.Greet"/>
+    <fullyQualifiedTypeName name="spring.service.dice.Dice"/>
+    <fullyQualifiedTypeName name="com.encore.mybatis.vo.MySawon"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="java.io.Reader"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+    <fullyQualifiedTypeName name="com.encore.mybatis.test.FactoryService"/>
+    <fullyQualifiedTypeName name="com.encore.mybatis.Book"/>
+</qualifiedTypeNameHistroy>

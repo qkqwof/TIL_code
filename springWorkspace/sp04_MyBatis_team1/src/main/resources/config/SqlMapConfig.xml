@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+ 
+<configuration>
+ 	<!-- 1. 디비정보 Wiring -->
+ 	<properties resource="config/dbconn.properties"/>
+ 	
+ 	<!-- 2. 디비정보를 인스턴스화시키는 객체...vo 연결 -->
+ 	<typeAliases>
+ 		<typeAlias type="com.encore.mybatis.vo.Book" alias="book"/>
+ 	</typeAliases>
+ 	
+ 	<!-- 3. JDBC 구축 -->
+ 	<environments default="development">
+ 		<environment id="development">
+ 			<transactionManager type="JDBC"/>
+ 			<dataSource type="UNPOOLED"> <!-- DriveManager 방식 -->
+ 				<property name="driver" value="${jdbc.mysql.driver}"/>
+ 				<property name="url" value="${jdbc.mysql.url}"/>
+ 				<property name="username" value="${jdbc.mysql.username}"/>
+ 				<property name="password" value="${jdbc.mysql.password}"/>
+ 			</dataSource>
+ 		</environment>
+ 	</environments>
+ 	
+ 	<mappers>
+ 		<mapper resource="mapper/book_mapping.xml"/>
+ 	</mappers>
+</configuration>

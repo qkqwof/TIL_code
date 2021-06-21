@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="mysawonMapper">
+	<insert id = "sawonAdd" parameterType="mysawon"> <!-- 파라미터 타입이 test에서 vo객체 -->
+	insert into mysawon(id, pwd, name, age, hiredate) values (#{id},#{pwd},#{name},#{age},curDate())
+	</insert> <!-- #{id} -> mysawon.getId()
+				   #{pwd} -> mysawon.getPwd() 등등 -->
+				   
+	<select id="sawonList" resultType="mysawon">
+		select 
+		num, id, name, age, hiredate
+		from mysawon
+		order by num desc	
+	</select>
+</mapper>
+
+

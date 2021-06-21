@@ -1,0 +1,5 @@
+package spring.service.dice.impl;
+
+public class DiceAImpl {
+
+}

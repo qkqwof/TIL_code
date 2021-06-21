@@ -1,0 +1,29 @@
+package com.encore.mybatis.test;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import com.encore.mybatis.vo.MySawon;
+
+public class MysawonTestApp1 {
+	public static void main(String[] args) throws Exception{
+		MySawon vo = new Mysawon();
+		vo.setId("encore01");
+		vo.setPwd("0101");
+		vo.setName("아이유");
+		vo.setAge(33);
+		
+		Resources.getResourceAsReader("config/sqlMapConfig.xml");
+		
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(r);
+		SqlSession session = factory.openSession();
+		session.insert("mysawonMapper.sawonAdd",vo);
+		session.commit();
+		session.close();
+		
+		System.out.println(vo.getName()+" 님 회원등록 성공");
+	}
+
+}

@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\encore_PJY\eclipse\springWorkspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+427507084.index
+4274755119.index
+2622447293.index
+368848172.index
+1228039379.index
