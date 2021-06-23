@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- User03에서는  Insert, Delete, Update문을 다 해본다
+     User01,User02 에서는 Select를 다뤘다
+     결국 CRUD 가 완성된다.
+ -->
+<mapper namespace="User03">
+	<insert id="addUser" parameterType="user">
+		INSERT INTO
+		users (user_id, user_name, password, age,grade)
+		VALUES(#{userId},#{userName},#{password},#{age},#{grade})
+	</insert>
+	
+	<update id="updateUser" parameterType="user">
+		UPDATE
+		users
+		SET user_name=#{userName}
+		WHERE user_id=#{userId}
+	</update>
+	
+	<delete id="removeUser" parameterType="string">
+		DELETE
+		FROM users
+		WHERE user_id=#{VALUE}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

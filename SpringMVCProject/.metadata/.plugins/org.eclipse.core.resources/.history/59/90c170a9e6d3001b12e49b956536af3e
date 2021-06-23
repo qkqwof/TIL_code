@@ -1,0 +1,5 @@
+package com.encore.spring.domain;
+
+public class Item {
+
+}

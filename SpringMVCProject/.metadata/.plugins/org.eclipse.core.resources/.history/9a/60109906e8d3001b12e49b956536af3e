@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User02">
+	<!--  id가 "user"로 시작하는 사람들을 검색하는 쿼리문을 작성 
+	      LIKE연산자와 함께 % 혹은 _  와일드 카드 필요
+	      지금은 % 와일드카드 사용 안했기 때문에 검색하면 아무것도 출력되지 않는다.
+	-->
+	<select id="getUser01" parameterType="string" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+		WHERE user_id LIKE #{VALUE}
+	</select>	
+	<select id="getUser02" parameterType="user" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+		WHERE user_id LIKE #{userId}
+	</select>
+	
+	<select id="getUser03" parameterType="string" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+		WHERE user_id LIKE #{VALUE} '%'
+	</select>
+	
+	<select id="getUser04" parameterType="user" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+		WHERE user_id LIKE  '%' #{userId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

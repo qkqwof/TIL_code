@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="sp02_SpringMVC"/>
+<aop-project name="sp01_SpringMVC"/>
+<aop-project name="sp04_FruitCart"/>
+<aop-project name="sp03_SpringMVC"/>
+</aop-reference-model>

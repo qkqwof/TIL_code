@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+1.
+MyBatis에서는
+ParameterMap은 사용하지 않는다...ParameterType만 사용한다.
+ResultMap은 사용한다. ...ResultType을 사용하지 않을수 있다.
+
+2. 
+MyBatis에서는
+정적인 쿼리(Static Query)뿐만이 아니라
+동적인 쿼리(Dynamic Query)를 사용할 수 있다.
+-->
+<mapper namespace="User07">
+	<!-- select문에서만 사용되는 결과맵, 컬럼명과 필드명이 다를경우 반드시 필요하다. -->
+	<resultMap type="user" id="userSelectRM">
+		<result property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="password" column="password"/>
+		<result property="age" column="age"/>
+		<result property="grade" column="grade"/>
+		<result property="regDate" column="reg_date"/>
+	</resultMap>
+	
+	<!-- SELECT문, 컬럼명과 필드명이 다름에도 불구하고 ALIAS사용하지 않았다.  -->
+	<select id="getUserList" resultMap="userSelectRM" parameterType="user"> 
+		SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+		WHERE user_id=#{userId}
+	</select>
+	
+	
+	<!--
+	정적인 쿼리문은 
+	SELECT문에서 WHERE절 조건을 어떻게 주느냐에 따라서 계속적으로 쿼리문이 생성된다.
+	
+	반면에
+	동적인 쿼리문은
+	SELEC문에서 WHERE절 조건이 바뀌더라도 하나의 SELECT문으로 여러개의 쿼리문을 소화할수 있어서
+	반복적이지 않는 쿼리문을 만들수 있다.	
+	  -->
+	<select id="getUserList01" parameterType="user" resultMap="userSelectRM">
+		SELECT
+		user_id, user_name, password, age, grade, reg_date
+		FROM users
+		<where>
+			<if test="userName !=null">
+				user_name LIKE #{userName}
+			</if>
+			<if test="age !=null">
+				OR age LIKE #{age}
+			</if>
+		</where>
+		
+		ORDER BY user_id DESC
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

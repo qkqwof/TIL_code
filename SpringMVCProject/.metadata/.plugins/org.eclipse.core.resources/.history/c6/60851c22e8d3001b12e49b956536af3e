@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+컬럼명과 vo 클래스의 필드명이 다를때는
+반드시 컬럼명 as 뒤에 필드명을 알리야스로 지정해야 한다.
+
+SELECT문은 리턴되는 타입이 ArrayList이지만
+Collection안에 들어가는 객체타입을 resultType으로 지정하면 된다.
+
+모든 프레임워크에서 반드시 이렇게 해야하는 것은 아니다.
+
+  -->
+<mapper namespace="UserMapper">
+	<select id="getUserList" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

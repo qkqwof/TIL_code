@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	1. parameterType, resultType의 의미 | 단순값을 받는 #{VALUE} 문법 이해한다. 
+	2. MyBatis에서는 collection, 자바 라이브러리 클래스 알리야스를 사용
+	   string, int, list, arraylist
+    3. MyBatis에서는 #{userId}  user.getUserId()와 동일한 getter문법임을 반드시 이해한다.
+-->
+
+<mapper namespace="User01">
+	<!--  id가 user01인 한사람을 검색하는 쿼리문을 작성 -->
+	<select id="getUser" parameterType="string" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users
+		WHERE user_id=#{VALUE}
+	</select>
+	
+	<select id="findUserId" parameterType="user" resultType="string">
+		SELECT
+		user_name
+		FROM 
+		users
+		WHERE user_id=#{userId} AND password=#{password}
+	</select>
+	
+	<select id="getUserList" resultType="user">
+		SELECT
+		user_id AS userId, 
+		user_name AS userName, 
+		password, 
+		age, 
+		grade, 
+		reg_date AS regDate
+		FROM users		
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
