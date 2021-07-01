@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sql.pms.mapper">
+	<insert id="insert" parameterType="phone">
+		insert into 
+		phones (num,model,price,vcode)
+		values (#{num},#{model},#{price},#{vcode})
+	</insert>
+	
+	<!-- phone과 company가 resultMap으로 연결... -->
+	<resultMap type="phone" id="phoneWithCompany">
+		<id column="num" property = "num"/>
+		<result column="model" property="model"/>
+		<result column="price" property="price"/>
+		<result column="vcode" property="vcode"/>
+		<association property="company" javaType="company">
+			<id column="vcode" property="vcode"/>
+			<result column="vendor" property="vendor"/>
+		</association>
+	</resultMap>
+	
+	<!-- 동적 쿼리 작성 :: 모든 폰 조회 및 상세폰 조회 둘 다 가능하도록 :: selectAll + selectOne -->
+	<select id="select" parameterType="phone" resultMap="phoneWithCompany"><!-- join 사용 -->
+		select
+		p.num, p.model, p.price, p.vcode, c.vcode, c.vendor
+		from phones p
+		join company c using(vcode)
+		<if test="num!=null">
+		where num=#{num}
+		</if>
+	</select>
+	
+	<!-- 동적 쿼리 작성 :: 로그인 기능과 id로 회원 검색기능 둘 다 가능하도록 -->
+	<select id="selectUser" parameterType="userInfo" resultType="userInfo"> <!-- Login + SelectOne -->
+		select 
+		id, pw
+		from userinfo
+		where id = #{id}
+		<if test="pw!=null">
+			and pw = #{pw}
+		</if>
+	</select>
+	
+	<!-- 폰 삭제 구문 -->
+	<delete id="delete" parameterType="string">
+		delete
+		from phones
+		where num = #{value}
+	</delete>
+	
+	<!-- 폰 수정 -->
+	<update id="update" parameterType="phone">
+		update
+		phones
+		set model = #{model},price=#{price},vcode=#{vcode}
+		where num = #{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
