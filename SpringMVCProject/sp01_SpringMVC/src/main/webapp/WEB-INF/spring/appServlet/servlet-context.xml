@@ -22,12 +22,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- IndexController 빈 등록(새로 추가해야 되는 부분) -->
-	<beans:bean name = "/" class="com.encore.spring.controller.IndexController">
+	<!-- IndexController 빈 등록 -->
+	<beans:bean name="/" class="com.encore.spring.controller.IndexController">
+	
 	</beans:bean>
-	
 	<context:component-scan base-package="com.encore.spring" />
-	
 	
 	
 </beans:beans>

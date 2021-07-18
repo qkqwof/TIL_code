@@ -1,0 +1,19 @@
+package com.encore.board.model;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.encore.board.domain.BoardVO;
+
+@Service
+public class BoardServiceImpl implements BoardService {
+
+	@Autowired
+	private BoardDAO boardDAO;
+	
+	@Override
+	public int write(BoardVO vo) {
+		return boardDAO.write(vo);
+	}
+
+}

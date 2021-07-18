@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210624\sp05_Products_sol.zip"/>
+	</list>
 	<list key="installedFeatures">
 		<item value="com.ianbrandt.tools.m2e.mdp.feature:0.0.4.201409291703"/>
 		<item value="org.aspectj:1.9.2.201811011643"/>
@@ -102,6 +105,38 @@
 		<item value="org.springsource.sts.package:3.9.7.201812201326-RELEASE-e410"/>
 		<item value="org.springsource.sts:3.9.7.201812201326-RELEASE"/>
 	</list>
-	<section name="org.eclipse.ui.internal.views.markers.FiltersConfigurationDialog">
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+			<item value="D:\encore_jwc\SpringMVCProject\sp12_BoardTest_Myself"/>
+			<item value="D:\encore_jwc\SpringMVCProject\sp11_PhoneTest_Template"/>
+			<item value="D:\encore_jwc\SpringMVCProject\sp11_PhoneTest_Template_Team1"/>
+			<item value="D:\encore_jwc\SpringMVCProject\sp11_PhoneTest_Template1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210707\spboot18_Product.zip"/>
+			<item value="C:\Users\Brandon Jung\Documents\카카오톡 받은 파일\spboot16_Simple01.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210702\sol\sp12_BoardTest_final.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210702\sp12_BoardTest.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210702\sp11_PhoneTest_Ajax.zip"/>
+			<item value="D:\Users\Brandon Jung\Downloads\sp11_PhoneTest_Final.zip"/>
+			<item value="D:\Users\Brandon Jung\Downloads\sp11_PhoneTest_Team.zip"/>
+			<item value="D:\Users\Brandon Jung\Downloads\sp11_PhoneTest_Template(iframe수정).zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210701\팀작업\sp11_PhoneTest_Template (2).zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\7월\20210701\sp11_PhoneTest_Template.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210630\BoardTest_Template(2).zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210630\sp10_BoardTest.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210630\BoardTest_Template.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\sp08_BookTest.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\sp08_BookTest2.zip"/>
+			<item value="D:\encore_jwc\util\spring_util\sp08_BookTest.zip"/>
+			<item value="D:\Users\Brandon Jung\Downloads\sp07_TeamProject.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210624\sp05_Products (2).zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210624\sp05_Products_1팀.zip"/>
+			<item value="D:\Users\Brandon Jung\Desktop\플레이데이터\1. 수업자료, Template\6월\20210624\sp05_Products_sol.zip"/>
+		</list>
 	</section>
 </section>

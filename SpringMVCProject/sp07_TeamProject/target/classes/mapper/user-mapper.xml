@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="userMapper">
+	<!--  1. id는 디비에서 자동증가되는 값  2. 그 값이 pk값 이라면 INSERT문은 반드시 아래처럼 작성 -->
+	<select id="Login" parameterType="user" resultType="user">
+		select userid,password 
+		from userinfo
+		where userid=#{userId} and password=#{password}
+	</select>
+</mapper>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

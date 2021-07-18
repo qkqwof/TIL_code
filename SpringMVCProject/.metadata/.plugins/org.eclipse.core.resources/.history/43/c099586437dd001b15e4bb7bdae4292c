@@ -1,0 +1,24 @@
+package com.encore.rest.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.encore.rest.dto.Greeting;
+
+@RestController
+public class GreetingController {
+	
+	//http://127.0.0.1:8888/rest/greet
+	@GetMapping("/greet") //데이터를 SELECT 해오는 요청 GetMapping
+	public Greeting sayGreet() {
+		return new Greeting(314L, "Restful API");
+	}
+	
+	//주소창에 파라미터를 포함시키는 방법
+	//http://127.0.0.1:8888/rest/greet/33
+	@GetMapping("/greet/{num}") // 이렇게 하게되면 num에 해당하는 값을 "/" 뒤에 넣어줘야한다.
+	public String showSample(@PathVariable int num) {
+		return "Hello Restful API case number... "+num;
+	}
+}

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2 align = "center">======== Spring MVC Framework =========</h2>
+	<h2 align="center">========== Spring MVC Framework ==========</h2>
 	<center><a href="main.do">DispatcherServlet Moving</a></center>
 </body>
 </html>

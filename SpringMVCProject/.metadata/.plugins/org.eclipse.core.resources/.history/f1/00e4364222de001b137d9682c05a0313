@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function select() {
+	//비동기 시작
+	$.ajax({
+		url:"/phone",
+		type:'get',
+		contentType:"application/json;charset=utf-8", //한글처리
+		dataType:'json', // 돌아오는 응답 데이터 json
+		
+		error: function(xhr, status, message) {
+			alert("error : "+message);
+		},
+		
+		success:function(data) {
+			//alert(data);
+		}//callback
+	})//ajax
+}//select
+
+</script>
+</head>
+<body>
+	<h2>휴대전화 목록</h2>
+	<div id="phone-list">
+	<table>
+		<tr>
+			<th>모델번호</th>
+			<th>모델이름</th>
+			<th>가격</th>
+			<th>제조사명</th>
+			<th>삭제</th>
+		</tr>
+		<c:forEach items="${phones}" var="phone">
+			<tr>
+				<td><a href="detail.do?num=${phone.num}">${phone.num}</a></td>
+				<td>${phone.model}</td>
+				<td>${phone.price}</td>
+				<td>${phone.company.vendor}</td>
+				<td><input type="checkbox" data-num="${phone.num}"></td>
+			</tr>
+		</c:forEach>
+	</div>
+	<br>
+	<h2>휴대전화 정보</h2>
+	<div id="phone-info"></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		width: 800px;
+		margin: 0 auto;
+		/* font-family: d2Coding; */
+	}
+	
+	table{
+		border: 1px double gray;
+		width: 120px;
+	}
+	
+	.t{
+		border: 1px double gray;
+		width: 120px;
+	}
+	
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	allPhones();
+	});
+
+function allPhones() {
+	//비동기 시작
+	$.ajax({
+		url:"phone",
+		type:'get',
+		contentType:"application/json;charset=utf-8", //한글처리
+		dataType:'json', // 돌아오는 응답 데이터 json
+		
+		error: function(xhr, status, message) {
+			$('#status').append("조회 실패 : "+message);
+		},
+	
+		success:function(data) {
+			//alert(data);
+			$('#phone-list').empty();
+			$('#phone-list').append("<table class='t'>");
+			$('#phone-list').append("<tr class='t'><th class='t'>모델번호</th><th class='t'>모델이름</th><th class='t'>가격</th><th class='t'>제조사명</th></tr>")
+			for(var i=0; i<data.length; i++) {
+				$('#phone-list').append(
+					"<tr class='t'><td class='t'>"+data[i].num+"</td><td class='t'>"
+												  +data[i].model+"</td><td class='t'>"
+												  +data[i].price+"</td><td class='t'>"
+												  +data[i].company.vendor+"</td></tr>"
+				) 
+			}
+			$('#book-list').append("</table>");
+			$('#status').append("조회 성공");
+		}//callback
+	})//ajax
+}//select
+
+
+
+</script>
+</head>
+<body>
+	<h2>휴대전화 목록</h2>
+	<div id="phone-list"></div>
+	<br>
+	<div id="status"></div>
+	<br>
+	<h2>휴대전화 정보</h2>
+	<div id="phone-info"></div>
+</body>
+</html>

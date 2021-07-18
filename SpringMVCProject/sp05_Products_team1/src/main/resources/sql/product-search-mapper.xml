@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProductMapper">
+
+	<sql id="select-myproduct">
+		SELECT
+		id, name, maker, price
+		FROM myproduct
+	</sql>
+
+	<select id="getProductList" resultType="product">
+		<include refid="select-myproduct" />
+	</select>
+
+	<select id="findProducts" parameterType="hashMap"
+		resultType="product">
+		<include refid="select-myproduct" />
+		<where>
+			<if test="choice=='id'">
+				id=#{word}
+			</if>
+			<if test="choice=='maker'">
+				maker LIKE '%${word}%'
+			</if>
+			<if test="choice=='name'">
+				name LIKE '%${word}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 1. id는 디비에서 자동증가되는 값   2. 그 값이 pk값이라면 INSERT문은 반드시 아래처럼 작성 -->
+	<insert id="enrollProduct" parameterType="product" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO myproduct(name, maker, price)
+		VALUES(#{name}, #{maker}, #{price})
+	</insert>
+
+	<delete id="deleteProduct" parameterType="string">
+		DELETE
+		FROM myproduct
+		WHERE name = #{VALUE}
+	</delete>
+
+	<update id="updateProduct" parameterType="product">
+		UPDATE myproduct
+		SET
+		name=#{name}, maker=#{maker}, price =#{price}
+		WHERE name = #{name}
+	</update>
+
+</mapper>

@@ -9,6 +9,7 @@ import com.encore.spring.domain.Item;
 
 @Service
 public class ItemCatalogImpl implements ItemCatalog{
+	
 	@Autowired
 	private ItemDAO itemDAO;
 	
@@ -21,5 +22,4 @@ public class ItemCatalogImpl implements ItemCatalog{
 	public Item getItem(Integer itemid) throws Exception {
 		return itemDAO.getItem(itemid);
 	}
-
 }

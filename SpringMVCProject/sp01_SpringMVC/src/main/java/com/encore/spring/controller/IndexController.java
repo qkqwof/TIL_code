@@ -10,9 +10,10 @@ public class IndexController implements Controller{
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		ModelAndView mv = new ModelAndView(); //뷰페이지 이름, 이동경로(기본이 무조건 forward), 데이터 바인딩까지 다 할 수 있는 라이브러리
 		
-		mv.setViewName("result"); // 확장자 안써도 됨
+		mv.setViewName("result"); //확장자 안써도 됨
 		mv.addObject("message", "Hello SpringMVC Framework!!");
 		
 		return mv;

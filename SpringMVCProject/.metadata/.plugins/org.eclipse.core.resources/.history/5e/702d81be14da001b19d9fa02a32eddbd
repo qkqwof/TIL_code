@@ -1,0 +1,28 @@
+package com.encore.pms.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.encore.pms.service.IPhoneService;
+
+@Controller
+public class MainController {	
+	
+	@Autowired
+	private IPhoneService iPhoneService;
+	
+	//@RequestMapping("login.do") //value가 요청하는 값이 login.do고 method 방식이 get방식
+	
+	@GetMapping("login.do") //4.3.2버전 이상이면 사용할 수 있다. 이걸로 이제 간다. 이렇게 요청이 들어오면
+	public String getLoginForm() {
+		//여기서 바로 login 폼인 Login.jsp로 간다
+		return "Login"; // 이렇게 써주면 바로 간다.
+	}
+}
+
+
+
+
+

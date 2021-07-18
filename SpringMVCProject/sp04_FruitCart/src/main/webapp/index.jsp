@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2 align="center">============== Fruits All Item ================</h2>
+<h2 align="center">================= Fruits All Item =================</h2>
 <div align="center">
 <h3>
 <a href="index.do">Show All Fruit Item Using Factory Method Pattern</a>

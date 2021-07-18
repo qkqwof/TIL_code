@@ -1,0 +1,5 @@
+package com.encore.pms.dao;
+
+public class PhoneDAOImpl {
+
+}

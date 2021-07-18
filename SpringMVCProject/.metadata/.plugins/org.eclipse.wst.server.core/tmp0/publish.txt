@@ -1,3 +1,3 @@
 #Tomcat publish data
-#Wed Jun 23 18:02:52 KST 2021
-org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\Playdata\\.m2\\repository\\org\\springframework\\spring-web\\4.1.1.RELEASE\\spring-web-4.1.1.RELEASE.jar=WEB-INF/lib/spring-web-4.1.1.RELEASE.jar
+#Tue Jul 06 16:48:38 KST 2021
+org.eclipse.jst.jee.server\:sp15_Restful_PhoneTest=D\:\\encore_jwc\\apache-tomcat-8.5.64\\webapps\\sp15_Restful_PhoneTest

@@ -1,11 +1,11 @@
-1624427906179	Delete elements
-1624427957990	Rename resource 'mybatis-userservice-mapping.xml'
-1624431270448	Copy compilation unit
-1624431290026	Rename type 'MyBatisJUnitTest2'
-1624431321453	Delete element
-1624434392221	Rename resource 'home.jsp'
-1624434589812	Delete element
-1624435284166	Copy file
-1624435342446	Delete element
-1624437421130	Copy file
-1624438971212	Delete element
+1624427025512	Delete element
+1624427856754	Copy file
+1624427867124	Rename resource 'SqlMapConfig.xml'
+1624431292508	Copy compilation unit
+1624431314994	Delete element
+1624434376477	Delete element
+1624434384889	Move 'itemList.jsp' to 'views'
+1624434595132	Delete element
+1624437369080	Move 'itemView.jsp' to 'views'
+1624496538412	Copy files
+1624496584199	Copy file

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class FormController implements Controller{
+public class FormController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -20,7 +20,6 @@ public class FormController implements Controller{
 		String name = request.getParameter("name");
 		String addr = request.getParameter("addr");
 		
-		return new ModelAndView("WEB-INF/views/form_result.jsp","info",name + "  님이 사는 곳은 " + addr);
+		return new ModelAndView("WEB-INF/views/form_result.jsp", "info", name+" 님이 사는 곳은 "+addr);
 	}
-
 }

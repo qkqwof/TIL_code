@@ -1,0 +1,24 @@
+package com.encore.pms.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.encore.pms.service.IPhoneService;
+
+@RestController
+public class PhoneRestController {
+	
+	@Autowired
+	private IPhoneService service;
+	
+	/*
+	 * 1. 모든 폰 정보 리턴
+	 * 2. 특정 num에 해당하는 폰 리턴
+	 * 3. 폰 추가하기
+	 * 4. 폰 수정하기
+	 * 5. 여러개의 폰 삭제하기
+	 * 
+	 * RestService API 사용해서 직접 작성
+	 * --> Post Man으로 값 일일히 넣어서 확인
+	 */
+}

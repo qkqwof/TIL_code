@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sql.pms.mapper">
+	<insert id="insert" parameterType="phone">
+		INSERT INTO
+		phones (num, model, price, vcode)
+		VALUE (#{num}, #{model}, #{price}, #{vcode})
+	</insert>
+	
+	<resultMap type="phone" id="phoneWithCompany">
+		<id column="num" property="num"/> <!-- 이렇게 하면 pk에 해당하는 코드가 된다. -->
+		<result column="model" property="model"/>
+		<result column="price" property="price"/>
+		<result column="vcode" property="vcode"/>
+		<association property="company" javaType="company"> <!-- vo클래스의 setClass alias :: javaType="company" -->
+			<id column="vcode" property="vcode" />
+			<result column="vendor" property="vendor" /> <!-- phone과 hasing 관계를 resultMap으로 명시.. 개체간의 Hasing관계 생각 -->
+		</association>
+	</resultMap>
+	
+	<!-- 동적 쿼리 작성 :: 모든 폰 조회 및 상세 폰 조회 둘다 가능하도록 :: selectAll + selectOne -->
+	<select id="select" parameterType="phone" resultMap="phoneWithCompany"><!-- join 사용 -->
+		SELECT
+		p.num, p.model, p.price, p.vcode, c.vcode, c.vendor
+		FROM phones p
+		JOIN company c USING(vcode)
+		<if test="num != null">
+		WHERE num=#{num}
+		</if>
+	</select>
+	
+	<!-- 동적 쿼리 작성 :: 로그인 기능과 id로 회원 검색기능 둘다 가능하도록 -->
+	<select id="selectUser" parameterType="userInfo" resultType="userInfo"><!-- Login + SelectOne --> <!-- 로그인 기능만 다루지 않고, 특정 유저 검색도 같이 다룰거기 때문에 selectUser... 한명만 검색할거기 때문 -->
+		SELECT
+		id, pw
+		FROM userinfo
+		WHERE id=#{id}
+		<if test="pw != null">
+			AND pw = #{pw}
+		</if>
+	</select>
+	
+	<delete id="delete" parameterType="string">
+		DELETE
+		FROM phones
+		WHERE num = #{VALUE}
+	</delete>
+	
+	<update id="update" parameterType="phone">
+		UPDATE
+		phones
+		SET model=#{model}, price=#{price}, vcode=#{vcode}
+		WHERE num=#{num}
+	</update>
+</mapper>

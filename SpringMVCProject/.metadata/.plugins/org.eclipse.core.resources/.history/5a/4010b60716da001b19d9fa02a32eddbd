@@ -1,0 +1,55 @@
+package com.encore.pms.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.encore.pms.dto.UserInfo;
+import com.encore.pms.service.IPhoneService;
+
+@Controller
+public class MainController {	
+	
+	@Autowired
+	private IPhoneService iPhoneService;
+	
+	//@RequestMapping("login.do") //value가 요청하는 값이 login.do고 method 방식이 get방식
+	
+	@GetMapping("login.do") //4.3.2버전 이상이면 사용할 수 있다. 이걸로 이제 간다. 이렇게 요청이 들어오면
+	public String getLoginForm() {
+		//여기서 바로 login 폼인 Login.jsp로 간다
+		return "Login"; // 이렇게 써주면 바로 간다.
+	}
+	
+	@PostMapping("login.do") //Get도 있으면 Post매핑도 있다
+	public String doLogin(UserInfo user, Model model, HttpSession session) {
+		try {
+			UserInfo selected = iPhoneService.select(user); //아이디와 패스워드 같은 사람을 찾았기 때문에 selected로...
+			if(selected != null) { //로그인 성공
+				session.setAttribute("loginUser", selected);
+				
+				//모든 폰이 검색된 결과페이지로 이동...
+				//로그인이 되면 핸드폰 목록보는 곳으로 바로 이동시키고자 함
+				return "redirect:searchPhone.do"; //redirect 반드시 해야하는 경우이다. DispatcherServlet 거쳐서 오기 때문에...
+			}else { //로그인 실패
+				return "Login"; //Login.jsp로 이동하도록..다시 로그인 시도
+			}
+		}catch(Exception e) { //비즈니스 로직 수행중 에러남
+			
+			return "Error"; //에러날 경우 Error.jsp로 돌림 
+		}	
+	}
+	
+	@GetMapping("searchPhone.do")
+	public String
+}
+
+
+
+
+

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<b>Upload File OK~~~~~</b><p>
+<b>Upload File OK~~~~</b>
 <hr>
 <ul>
 	<li>File DownLoad &nbsp; &nbsp; &nbsp; &nbsp;</li>

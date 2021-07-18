@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.board.mapper">
+	<insert id="write" parameterType="boardVO" useGeneratedKeys="true" keyProperty="no">
+		INSERT
+		INTO springboard(title, content, w_date, id)
+		VALUES(#{title},#{content},curdate(),#{memberVO.id})
+	</insert>
+	<!--   특정 게시글이 입력된 날짜를 디비에서 받아오는 쿼리문..-->
+	<select id="selectByNoForDate" resultType="string" parameterType="int">
+		SELECT w_date 
+		FROM springboard
+		WHERE no=#{VALUE}
+	</select>
+	
+	
+	<resultMap id="boardListRM" type="boardVO" >
+		<id property="no" column="no"/>
+		<result property="title" column="title"/>		
+		<result property="count" column="count"/>
+		<result property="writeDate" column="w_date"/>		
+		<association property="memberVO" javaType="memberVO">
+			<id column="id" property="id" />
+			<result column="password" property="password" />
+			<result column="name" property="name" />
+			<result column="address" property="address" />
+		</association>
+	</resultMap> 
+	
+	 <select id="getBoardList" resultMap="boardListRM">
+		SELECT
+		b.no, b.title, b.count, b.w_date, m.name
+		FROM springboard b, member m
+		WHERE b.id = m.id
+		ORDER BY no DESC
+	</select>
+	
+	<resultMap id="boardRM"  type="boardVO" extends="boardListRM">
+		<result column="content" property="content"/>
+		<result property="memberVO.id" column="id"/>
+	</resultMap>
+	
+	
+	<select id="showContent" resultMap="boardRM" parameterType="int">
+		SELECT
+		b.no, b.title, b.count, b.w_date,b.content, m.id, m.name
+		FROM springboard b, member m
+		WHERE b.id = m.id AND b.no=#{VALUE}
+		ORDER BY no DESC
+	</select> 
+	
+	<delete id="deleteBoard" parameterType="int">	
+		DELETE FROM springboard WHERE no=#{VALUE}
+	</delete>
+	<update id="updateCount" parameterType="int">
+		UPDATE springboard SET count = count+1 WHERE no=#{VALUE}	
+	</update> 
+	<update id="updateBoard" parameterType="boardVO">
+		UPDATE springboard SET title=#{title}, content=#{content}
+		WHERE no=#{no}
+	</update>
+</mapper>
+
+
+
+
+
+
+

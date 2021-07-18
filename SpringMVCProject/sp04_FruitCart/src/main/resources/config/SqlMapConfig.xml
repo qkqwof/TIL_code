@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<properties resource="config/dbconn.properties"/>
 	
-	<properties resource="config/dbconn.properties" />
-
 	<typeAliases>
-		<package name="com.encore.spring.domain"/> <!-- ex) item, productCart -->
+		<package name="com.encore.spring.domain"/><!--ex) item, productCart (이렇게 되는게 알리야스의 특징) -->
 	</typeAliases>
 	
 	<!-- JUnit MyBatis Framework 단위 테스트 용도 :: ~~101.java -->
 	<environments default="aa">
 		<environment id="aa">
 			<transactionManager type="JDBC"/>
-				<dataSource type="UNPOOLED">
-					<property name="driver" value="${jdbc.mysql.driver}"/>
-					<property name="url" value="${jdbc.mysql.url}"/>
-					<property name="username" value="${jdbc.mysql.username}"/>
-					<property name="password" value="${jdbc.mysql.password}"/>
-				</dataSource>
-		</environment>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="${jdbc.mysql.driver}"/>
+				<property name="url" value="${jdbc.mysql.url}"/>
+				<property name="username" value="${jdbc.mysql.username}"/>
+				<property name="password" value="${jdbc.mysql.password}"/>
+			</dataSource>
+		</environment>	
 	</environments>
 	
 	<mappers>
 		<mapper resource="sql/item-shopping-mapper.xml"/>
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -19,23 +19,22 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		
+		<beans:property name="order" value="1" />
 	</beans:bean>
-	<!-- BeanNameViewresolver 등록 -->
+	
+	<!-- BeanNameViewResolver 등록 -->
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="0"/>
+		<beans:property name="order" value="0" />
 	</beans:bean>
 	
 	<!-- DownLoadView 처리 -->
-	<beans:bean name="downloadView" class="util.DownloadView"/>
+	<beans:bean name="downloadView" class="util.DownloadView" />
+	
 	<!-- MultipartFile 등록 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="defaultEncoding" value="utf-8"/>
-		<beans:property name="maxUploadSize" value="-1"/>
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="maxUploadSize" value="-1" />
 	</beans:bean>
 	
 	<context:component-scan base-package="com.encore.spring" />
-	
-	
-	
 </beans:beans>

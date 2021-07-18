@@ -1,0 +1,26 @@
+package com.encore.rest.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.encore.rest.service.BookService;
+import com.encore.rest.vo.Book;
+
+@RestController
+@RequestMapping("api")
+public class BookRestController {
+	
+	@Autowired
+	private BookService bookService;
+	
+	@GetMapping("book")
+	public ResponseEntity<List<Book>> getAllBook() throws Exception { // 그냥 List를 리턴타입으로 하는것보다 ResponseEntity안에 넣으면 Powerful한 서비스가 가능하다
+		
+		
+	}
+}

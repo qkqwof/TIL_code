@@ -1,0 +1,7 @@
+package com.encore.board.model;
+
+import com.encore.board.domain.BoardVO;
+
+public interface BoardDAO {
+	int write(BoardVO vo);
+}

@@ -12,10 +12,6 @@
 		<property name="username" value="${JDBC.Username}"/>
 		<property name="password" value="${JDBC.Password}"/>		
 	</bean>
-	<!-- Transaction 처리 Bean 추가  :: Annotation 기반으로 Transaction 처리 방법-->
-	<bean id = "transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransaction">
-	
-	</bean>
 	
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:config/SqlMapConfig.xml"/>

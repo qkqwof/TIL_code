@@ -8,11 +8,14 @@ public class Item {
 	private String url;
 	private int count;
 	
-	public Item() {} // 기본 생성자가 반드시 있어야 한다.
+	//프레임워크에서 만들 때 중요한 것!! 반드시 기본생성자가 있어야한다.
+	public Item() {} //기본 생성자가 반드시 있어야 한다.
+
 	public Item(int itemNumber) {
 		super();
 		this.itemNumber = itemNumber;
 	}
+
 	public Item(int itemNumber, String name, int price, String description, String url) {
 		super();
 		this.itemNumber = itemNumber;
@@ -21,6 +24,7 @@ public class Item {
 		this.description = description;
 		this.url = url;
 	}
+
 	public Item(int itemNumber, String name, int price, String description, String url, int count) {
 		super();
 		this.itemNumber = itemNumber;
@@ -30,42 +34,55 @@ public class Item {
 		this.url = url;
 		this.count = count;
 	}
+
 	public int getItemNumber() {
 		return itemNumber;
 	}
+
 	public void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getUrl() {
 		return url;
 	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
 	public int getCount() {
 		return count;
 	}
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
 	@Override
 	public String toString() {
 		return "Item [itemNumber=" + itemNumber + ", name=" + name + ", price=" + price + ", description=" + description

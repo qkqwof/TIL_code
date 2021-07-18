@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		width: 800px;
+		margin: 0 auto;
+		/* font-family: d2Coding; */
+	}
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$('#allBooks').click(function() {
+		allbook();
+	}); //click
+});//function
+
+function allBook() {
+	//비동기 시작...
+	$.ajax({
+		url:"api/book",
+		type:'get',
+		contentType:"application/json;charset=utf-8",
+		
+		error: function(xhr, status, message) {
+			alert("error : "+message);
+		},
+		
+		success:function(data) {
+			//alert(data);
+			$('#book-list').empty();
+			$('#book-list').append("<ul>");
+			for(var i=0; i<data.length; i++) {
+				$('#book-list').append("<li>"+data[i].isbn+"</li>");
+			}
+			$('#book-list').append("</ul>");
+			
+		}//callback
+	});//ajax
+}//allBook
+</script>
+</head>
+<body>
+	<div align="center"><h1>Welcome To PlayData</h1></div>
+	<div style="text-align:right;">
+		<a href="#">아이디</a>
+		<a href="#">로그아웃</a>
+	</div>
+	<hr>
+	<h2>도 서 관 리</h2>
+	<input type="button" value="도서목록조회" id="allBooks">
+	<div id="book-list"></div>
+</body>
+</html>

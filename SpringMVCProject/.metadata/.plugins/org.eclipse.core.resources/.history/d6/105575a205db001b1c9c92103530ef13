@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.board.mapper">
+	<insert id="write" parameterType="boardVO" useGeneratedKeys="true" keyProperty="no">
+		INSERT
+		INTO springboard(title, content, w_date, id) <!-- 모든건 폼과 연결되있다. 상상하면서 이런거 만듬 -->
+		VALUES(#{title}, #{content}, curdate(), #{memberVO.id}) <!-- curdate()는 현재 시각을 저장 -->
+	</insert>
+	
+	<!-- 특정 게시글이 입력된 날짜를 DB에서 받아오는 쿼리문 -->
+ 	<select id="selectByNoForDate" resultType="string" parameterType="int"> <!-- 날짜는 파라미터타입 string으로 받아오면 된다 -->
+		SELECT w_date
+		FROM springboard
+		WHERE no=#{VALUE}
+	</select>
+	
+	<resultMap type="boardVO" id="boardListRM">
+		<id property="no" column="no"/>
+		<result property="title" column="title"/>
+		<result property="count" column="count"/>
+		<result property="writeDate" column="w_date"/>
+		<result property="memberVO.id" column="w_date"/>
+		<association property="memberVO" javaType="memberVO">
+			<id column="id" property="id"/>
+			<result column="password" property="password" />
+			<result column="name" property="name" />
+			<result column="address" property="address" />
+		</association>
+	</resultMap>
+	
+	<select id="getBoardList" resultMap="boardListRM">
+		SELECT
+		b.no, b.title, b.count, b.w_date, m.name
+		FROM springboard b, member m
+		WHERE b.id = m.id
+		ORDER BY no DESC
+	</select>
+	
+	
+	<resultMap type="boardVO" id="boardRM" extends="boardListRM"> <!-- extends로 위에 ResultMap을 상속받아서 내용만 추가해서 쓰는 아래용 ResultMap 추가 -->
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<select id="showContent" resultType="boardVO" parameterType="int">
+		SELECT
+		b.no, b.title, b.count, b.w_date, b.content, m.id, m.name
+		FROM springboard b, member m
+		WHERE b.id = m.id AND b.no=#{VALUE}
+		ORDER BY no DESC
+	</select>
+	<!-- 
+	<delete id="">
+	
+	</delete> -->
+	<update id="update" parameterType="boardVO">
+	UPDATE
+	springboard
+	SET title=#{title}, content=#{content}
+	WHERE no=#{no}
+	</update>  
+</mapper>

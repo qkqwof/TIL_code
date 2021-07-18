@@ -1,0 +1,5 @@
+package com.encore.pms.service;
+
+public class PhoneServiceImpl {
+
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.board.mapper">
+	<insert id="write" parameterType="boardVO" useGeneratedKeys="true" keyProperty="no">
+		INSERT
+		INTO springboard(title, content, w_date, id) <!-- 모든건 폼과 연결되있다. 상상하면서 이런거 만듬 -->
+		VALUES(#{title}, #{content}, curdate(), #{memberVO.id}) <!-- curdate()는 현재 시각을 저장 -->
+	</insert>
+	<select id="">
+	
+	</select>
+	<delete id="">
+	
+	</delete>
+	<update id="">
+	
+	</update>
+</mapper>
+
+
+
+
+
+
+

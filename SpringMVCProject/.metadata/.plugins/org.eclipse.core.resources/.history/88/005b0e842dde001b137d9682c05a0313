@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		width: 800px;
+		margin: 0 auto;
+		/* font-family: d2Coding; */
+	}
+	
+	table{
+		width: 100px;
+	}
+	
+	.t{
+		width: 100px;
+		border: 1px double gray;
+	}
+	
+</style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	allPhones();
+	});
+
+function allPhones() {
+	//비동기 시작
+	$.ajax({
+		url:"phone",
+		type:'get',
+		contentType:"application/json;charset=utf-8", //한글처리
+		dataType:'json', // 돌아오는 응답 데이터 json
+		
+		error: function(xhr, status, message) {
+			$('#status').append("조회 실패 : "+message);
+		},
+	
+		success:function(data) {
+			//alert(data);
+			$('#phone-list').empty();
+			$('#phone-list').append("<table class='t'>");
+			$('#phone-list').append("<tr class='t'><th class='t'>모델번호</th><th class='t'>모델이름</th><th class='t'>가격</th><th class='t'>제조사명</th></tr>")
+			for(var i=0; i<data.length; i++) {
+				$('#phone-list').append(
+					"<tr class='t'><td class='t'>"+data[i].num+"</td><td class='t'>"
+												  +data[i].model+"</td><td class='t'>"
+												  +data[i].price+"</td><td class='t'>"
+												  +data[i].company.vendor+"</td></tr>"
+				) 
+			}
+			$('#book-list').append("</table>");
+			$('#status').append("조회 성공");
+		}//callback
+	})//ajax
+}//select
+
+function phoneInfo(num) {
+	$.ajax({
+		url:"phone/"+num,
+		type: 'get',
+		contentType:"application/json;charset=utf-8",
+		
+		error: function(xhr, status, message) {
+			$('#status').append("조회 실패 : "+message);
+		},
+		
+		success:function(data) { 
+			$('#phone-info').empty();
+			var temp = "";
+			temp += "<p></p><table>";
+			temp += "<tr><td class=g>모델번호</td><td><input type='text' name='num' value='"+data.num+"'></td></tr>";
+			temp += "<tr><td class=g>모델명</td><td><input type='text' name='model' value='"+data.model+"'></td></tr>";
+			temp += "<tr><td class=g>가격</td><td><input type='text' name='price' value='"+data.price+"'></td></tr>";
+			temp += "<tr><td class=g>제조사</td><td><select name='vendor' value='"+data.company.vendor+"'></td></tr>";
+			
+			temp += "<input type='button' value='추가하기' onclick='insert()'>";
+			temp += "<input type='button' value='수정하기' onclick='update()'>";
+			temp += "<input type='button' value='삭제하기' onclick= delete('"+data.num+"')>";
+		
+			$('#phone-info').append(temp);
+		}
+	})//ajax
+}//phoneInfo
+
+
+</script>
+</head>
+<body>
+	<h2>휴대전화 목록</h2>
+	<div id="phone-list"></div>
+	<br>
+	<div id="status"></div>
+	<br>
+	<h2>휴대전화 정보</h2>
+	<div id="phone-info"></div>
+</body>
+</html>

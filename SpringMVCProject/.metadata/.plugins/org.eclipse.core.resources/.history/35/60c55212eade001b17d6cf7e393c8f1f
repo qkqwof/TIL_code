@@ -1,0 +1,59 @@
+package com.encore.emp.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.encore.emp.domain.EmployeeDto;
+import com.encore.emp.service.EmpService;
+
+@RestController
+@RequestMapping("api")
+public class EmployeeController {
+
+	@Autowired
+	private EmpService service;
+	
+	@GetMapping("findAllEmployees")
+	public ResponseEntity<List<EmployeeDto>> findAllEmployees() throws Exception {
+		List<EmployeeDto> emps = service.findAllEmployees();
+		
+		if(emps.isEmpty()) return new ResponseEntity<List<EmployeeDto>>(HttpStatus.NO_CONTENT); //사원이 없다면..isEmpty
+		return new ResponseEntity<List<EmployeeDto>>(emps, HttpStatus.OK);
+	}
+	
+	/*
+	 * 2. getEmployeesTotal : 모든 사원의 총 인원수를 반환한다.
+	 * 3. findEmployeeById  : 사원 아이디로 사원의 정보를 찾는다.
+	 * 4. findLikeEmployees : 특정한 이름이 들어간 사원을 찾는다.
+	 * 5. findEmployeeByManagerId : 특정한 매니저에 소속된 사원들을 찾는다.
+	 * 6. addEmployee       : 특정한 사원을 추가한다.
+	 * 7. updateEmployee    : 사원의 정보를 수정한다.
+	 * 8. deleteEmployee    : 해당 사원의 정보를 삭제한다.
+	 *  
+	 * ---> PostMan Tool을 사용해서 로직들이 잘 작성되었는지 확인하시기 바랍니다.
+	 * 
+	 */
+	
+	@GetMapping("getEmployeesTotal")
+	public int getEmployeesTotal() throws Exception {
+		int result = service.getEmployeesTotal();
+		return result;
+	}
+	
+	@GetMapping("findEmployeeById/{id}")
+	public ResponseEntity<EmployeeDto> findEmployeeById(@PathVariable int id) throws Exception {
+		EmployeeDto emp = new EmployeeDto();
+		emp.setId(id);
+		EmployeeDto selected = service.findEmployeeById(id);
+		
+		if(selected==null) return new ResponseEntity<EmployeeDto>(HttpStatus.NO_CONTENT); //사원이 없다면..isEmpty
+		return new ResponseEntity<EmployeeDto>(selected, HttpStatus.OK);
+	}
+}

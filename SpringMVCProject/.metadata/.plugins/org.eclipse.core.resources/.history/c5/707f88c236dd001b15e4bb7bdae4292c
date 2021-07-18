@@ -1,0 +1,15 @@
+package com.encore.rest.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.encore.rest.dto.Greeting;
+
+@RestController
+public class GreetingController {
+	
+	@GetMapping("/greet") //데이터를 SELECT 해오는 요청 GetMapping
+	public Greeting sayGreet() {
+		return new Greeting(314L, "Restful API");
+	}
+}

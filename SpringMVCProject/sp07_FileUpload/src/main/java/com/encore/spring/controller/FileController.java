@@ -16,46 +16,44 @@ import com.encore.spring.model.UploadDataVO;
 public class FileController {
 	
 	@RequestMapping("fileupload.do")
-	public ModelAndView fileupload(HttpServletRequest request ,UploadDataVO vo) throws Exception{
-		//1. 업로드된 파일의 정보를 가지고 있는 MultipartFile을 하나 받아온다... vo에서...
+	public ModelAndView fileupload(HttpServletRequest request, UploadDataVO vo) throws Exception{ //vo넣으면 자동바인딩 된다
+		//1. 업로드된 파일의 정보를 가지고 있는 MultipartFile을 하나 받아온다... vo에서
 		MultipartFile mFile = vo.getUploadFile();
-		System.out.println("mfile :: " + mFile);
+		System.out.println("mFile :: "+mFile);
 		
 		/*
 		 * 2. 업로드된 파일이 있다면
-		 * 	     파일의 사이즈
-		 * 	     업로드한 파일의 이름
-		 * 	     업로드한 파일의 파라미터명?
+		 * 	  파일의 사이즈
+		 * 	  업로드한 파일의 이름
+		 * 	  업로드한 파일의 파라미터명?
 		 */
 		if((mFile.isEmpty())!=true) {//업로드된 파일이 있다면
-			System.out.println("파일 사이즈 :: " + mFile.getSize());
-			System.out.println("업로드된 파일명 :: " + mFile.getOriginalFilename());
-			System.out.println("파일의 파라미터명 :: " + mFile.getName());
+			System.out.println("파일의 사이즈 :: "+mFile.getSize());
+			System.out.println("업로드된 파일명 :: "+mFile.getOriginalFilename());
+			System.out.println("파일의 사이즈 :: "+mFile.getName());	
 		}
 		
-		//3. 업로드한 파일을 지정한 경로에다 copy해서 이동시킴.../uplaod/copy해온 파일이 저장됨.
+		// 3. 업로드한 파일을 지정한 경로에다 copy해서 이동시킴.../upload/copy해온 파일이 저장됨.
 		String root = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("ROOT ::"+root);
-		String path = root + "\\upload\\";
+		System.out.println("ROOT :: "+root);
+		String path = root+"\\upload\\";
 		
-		//4. File 객체 생성...mFile.transferTo()
+		// 4. File 객체 생성....mFile.transferTo()
 		File copyFile = new File(path+mFile.getOriginalFilename());
-		mFile.transferTo(copyFile); //업로드한 파일의 카피본이 해당경로에 저장된다...이동한다.
-		System.out.println("path:: "+path);
-		return new ModelAndView("upload_result","uploadfile",mFile.getOriginalFilename());
+		mFile.transferTo(copyFile); //업로드한 파일의 카피본이 해당경로에 저장된다...이동한다
+		System.out.println("path :: "+path);
 		
+		return new ModelAndView("upload_result", "uploadfile", mFile.getOriginalFilename());
 	}
 	
-		@RequestMapping("fileDown.do")
-		public ModelAndView filedown(HttpServletRequest request , String filename) throws Exception{
-			System.out.println("filename :: "+ filename);
-			String root = request.getSession().getServletContext().getRealPath("/");
-			System.out.println("ROOT ::"+root);
-			String path = root + "\\upload\\";
-			
-			HashMap map = new HashMap();
-			map.put("path",path);
-			return new ModelAndView("downloadView",map);
-		}
-	
+	@RequestMapping("fileDown.do")
+	public ModelAndView filedown(HttpServletRequest request, String filename) throws Exception{
+		System.out.println("filename :: "+filename);
+		String root = request.getSession().getServletContext().getRealPath("/");
+		String path = root+"\\upload\\";
+		
+		HashMap map = new HashMap();
+		map.put("path", path);
+		return new ModelAndView("downloadView", map);
+	}
 }
